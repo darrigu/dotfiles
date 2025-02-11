@@ -6,6 +6,7 @@ set -gx FZF_DEFAULT_OPTS "--color=bg+:#313244,spinner:#f5e0dc,hl:#f38ba8,fg:#cdd
 set -gx NNN_COLORS "#04020301;4231"
 set -gx NNN_FCOLORS "030304020705050801060301"
 set -gx OAK_STD_PATH ~/projects/oak/std
+set -gx GOHOME ~/third_party/go
 
 set -gx PNPM_HOME "/home/hugo/.local/share/pnpm"
 if not string match -q -- $PNPM_HOME $PATH
@@ -15,11 +16,15 @@ end
 fish_add_path ~/.cargo/bin
 fish_add_path ~/.local/share/gem/ruby/3.3.0/bin
 fish_add_path ~/projects/oak/bin
+fish_add_path ~/third_party/c3
+fish_add_path ~/.local/bin
+fish_add_path ~/third_party/uxn
 
-alias v nvim
+alias vi nvim
 alias k kak
 alias cd z
 alias nnn "nnn -e"
+alias ng "nvim +Neogit"
 function config --wraps ls
    git --git-dir=$HOME/.dotfiles --work-tree=$HOME $argv;
 end
@@ -35,3 +40,6 @@ enable_transience
 zoxide init fish | source
 
 set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin /home/hugo/.ghcup/bin $PATH # ghcup-env
+
+
+fish_add_path /home/hugo/.spicetify
