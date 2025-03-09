@@ -1,0 +1,10 @@
+nvim|symlink|.config
+alacritty|symlink|.config
+fish|symlink|.config
+starship.toml|symlink|.config
+.emacs|symlink|
+.emacs.rc|symlink|
+.emacs.snippets|symlink|
+.emacs.local|symlink|
+.emacs.custom.el|symlink|
+.sqliterc|symlink|
