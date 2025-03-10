@@ -44,7 +44,10 @@ vim.opt.fillchars = { eob = ' ' }
 vim.opt.showmode = false
 vim.opt.showcmd = false
 
-vim.keymap.set('n', '<space>m', ':make!<cr>')
+vim.keymap.set('n', '<space>m', ':make! ')
+vim.keymap.set('n', '<tab>', ':bn<cr>')
+vim.keymap.set('n', '<s-tab>', ':bn<cr>')
+vim.keymap.set('n', '<space>x', ':bd!<cr>')
 
 vim.keymap.set({'n', 'v'}, '<up>', 'g<up>')
 vim.keymap.set({'n', 'v'}, '<down>', 'g<down>')

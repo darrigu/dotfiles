@@ -8,3 +8,5 @@ starship.toml|symlink|.config
 .emacs.local|symlink|
 .emacs.custom.el|symlink|
 .sqliterc|symlink|
+helix|symlink|.config
+gitui|symlink|.config

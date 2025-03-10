@@ -38,3 +38,15 @@ set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; se
 test -r "$HOME/.opam/opam-init/init.fish" && source "$HOME/.opam/opam-init/init.fish" > /dev/null 2> /dev/null; or true
 
 status is-interactive; and theme_gruvbox light
+
+function toggle_fg_bg
+   if jobs | grep -q "stopped"
+      fg >/dev/null 2>&1
+   else
+      commandline -f cancel
+      commandline "fg"
+      commandline -f execute
+   end
+end
+
+bind \cz toggle_fg_bg

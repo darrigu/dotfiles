@@ -1,0 +1,30 @@
+theme = "gruvbox_light"
+
+[editor]
+line-number = "relative"
+auto-format = false
+color-modes = true
+completion-timeout = 5
+gutters = ["diagnostics", "line-numbers", "spacer", "spacer"]
+auto-info = false
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.indent-guides]
+render = true
+
+# [editor.lsp]
+# auto-signature-help = false
+
+[editor.persistence]
+old-files = true
+commands = true
+search = true
+clipboard = true
+
+[keys.normal]
+g = { c = ":bc!" }
+
