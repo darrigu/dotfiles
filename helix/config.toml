@@ -1,8 +1,8 @@
-theme = "gruvbox_light"
+theme = "catppuccin_mocha"
 
 [editor]
 line-number = "relative"
-auto-format = false
+# auto-format = false
 color-modes = true
 completion-timeout = 5
 gutters = ["diagnostics", "line-numbers", "spacer", "spacer"]
@@ -18,6 +18,11 @@ render = true
 
 # [editor.lsp]
 # auto-signature-help = false
+
+[editor.soft-wrap]
+enable = true
+wrap-indicator = ""
+max-indent-retain = 0
 
 [editor.persistence]
 old-files = true

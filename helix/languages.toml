@@ -1,3 +1,15 @@
 [[language]]
 name = "hare"
 indent = { tab-width = 3, unit = "   " }
+
+[[language]]
+name = "python"
+auto-format = true
+
+[[language]]
+name = "c"
+auto-format = false
+
+[[language]]
+name = "zig"
+auto-format = false

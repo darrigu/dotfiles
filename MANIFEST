@@ -1,7 +1,4 @@
 nvim|symlink|.config
-alacritty|symlink|.config
-fish|symlink|.config
-starship.toml|symlink|.config
 .emacs|symlink|
 .emacs.rc|symlink|
 .emacs.snippets|symlink|
@@ -10,3 +7,4 @@ starship.toml|symlink|.config
 .sqliterc|symlink|
 helix|symlink|.config
 gitui|symlink|.config
+config.nu|symlink|.config/nushell
