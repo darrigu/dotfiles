@@ -17,7 +17,10 @@ MiniDeps.setup({ path = { package = path_package } })
 
 local add = MiniDeps.add
 
-add('ellisonleao/gruvbox.nvim')
+add({
+   source = "catppuccin/nvim",
+   name = "catppuccin",
+})
 
 add('nvim-tree/nvim-web-devicons')
 
@@ -70,8 +73,7 @@ vim.cmd([[
 local now, later = MiniDeps.now, MiniDeps.later
 
 now(function()
-   vim.opt.background = 'light'
-   vim.cmd.colorscheme('gruvbox')
+   vim.cmd.colorscheme('catppuccin')
 end)
 
 later(function() require('mini.statusline').setup() end)

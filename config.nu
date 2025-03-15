@@ -171,6 +171,7 @@ $env.config = {
    },
 
    hooks: {
+      pre_prompt: [{ tput smkx }],
       env_change: {
          PWD: [
             {|_, after| $after | save -f ~/.pwd }
@@ -208,12 +209,16 @@ $env.PROMPT_COMMAND_RIGHT = ""
 $env.TRANSIENT_PROMPT_COMMAND = ""
 
 $env.EDITOR = "hx"
+$env.PNPM_HOME = "~/.local/share/pnpm"
+
+alias v = nvim
 
 use std/util "path add"
 path add "~/.local/bin"
+path add $env.PNPM_HOME
 
 if ('~/.pwd' | path exists) {
    cd ('~/.pwd' | open)
 }
 
-tput smkx
+use task.nu
