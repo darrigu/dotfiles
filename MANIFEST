@@ -1,9 +1,5 @@
 nvim|symlink|.config
-.emacs|symlink|
-.emacs.rc|symlink|
-.emacs.snippets|symlink|
-.emacs.local|symlink|
-.emacs.custom.el|symlink|
+emacs|symlink|.config
 .sqliterc|symlink|
 helix|symlink|.config
 gitui|symlink|.config

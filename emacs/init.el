@@ -1,22 +1,15 @@
-(setq custom-file "~/.emacs.custom.el")
+(setq custom-file "~/.config/emacs/custom.el")
 (package-initialize)
 
-(add-to-list 'load-path "~/.emacs.local/")
+(add-to-list 'load-path "~/.config/emacs/lisp/")
 
-(load "~/.emacs.rc/rc.el")
+(load "~/.config/emacs/rc/rc.el")
 
-(load "~/.emacs.rc/misc-rc.el")
-(load "~/.emacs.rc/org-mode-rc.el")
-(load "~/.emacs.rc/autocommit-rc.el")
+(load "~/.config/emacs/rc/misc-rc.el")
+(load "~/.config/emacs/rc/org-mode-rc.el")
+(load "~/.config/emacs/rc/autocommit-rc.el")
 
 ;;; Appearance
-(defun rc/get-default-font ()
-  (cond
-   ((eq system-type 'windows-nt) "Consolas-13")
-   ((eq system-type 'gnu/linux) "Iosevka-18")))
-
-(add-to-list 'default-frame-alist `(font . ,(rc/get-default-font)))
-
 (tool-bar-mode 0)
 (menu-bar-mode 0)
 (scroll-bar-mode 0)
@@ -24,12 +17,20 @@
 (show-paren-mode 1)
 (blink-cursor-mode 0)
 
-(add-to-list 'load-path "~/.emacs.local/emacs-theme-gruvbox/")
-(add-to-list 'custom-theme-load-path "~/.emacs.local/emacs-theme-gruvbox/")
-(load-theme 'gruvbox-light-medium t)
+(rc/require 'catppuccin-theme)
+(load-theme 'catppuccin t)
 
 (eval-after-load 'zenburn
   (set-face-attribute 'line-number nil :inherit 'default))
+
+(rc/require 'ligature)
+(ligature-set-ligatures
+ 'prog-mode
+ '("<---" "<--"  "<<-" "<-" "->" "-->" "--->" "<->" "<-->" "<--->" "<---->" "<!--"
+   "<==" "<===" "<=" "=>" "=>>" "==>" "===>" ">=" "<=>" "<==>" "<===>" "<====>" "<!---"
+   "<~~" "<~" "~>" "~~>" "::" ":::" "==" "!=" "===" "!=="
+   ":=" ":-" ":+" "<*" "<*>" "*>" "<|" "<|>" "|>" "+:" "-:" "=:" "<******>" "++" "+++"))
+(global-ligature-mode t)
 
 ;;; ido
 (rc/require 'smex 'ido-completing-read+)
@@ -52,20 +53,6 @@
 (add-hook 'c-mode-hook (lambda ()
                          (interactive)
                          (c-toggle-comment-style -1)))
-
-;;; Paredit
-(rc/require 'paredit)
-
-(defun rc/turn-on-paredit ()
-  (interactive)
-  (paredit-mode 1))
-
-(add-hook 'emacs-lisp-mode-hook  'rc/turn-on-paredit)
-(add-hook 'clojure-mode-hook     'rc/turn-on-paredit)
-(add-hook 'lisp-mode-hook        'rc/turn-on-paredit)
-(add-hook 'common-lisp-mode-hook 'rc/turn-on-paredit)
-(add-hook 'scheme-mode-hook      'rc/turn-on-paredit)
-(add-hook 'racket-mode-hook      'rc/turn-on-paredit)
 
 ;;; Emacs lisp
 (add-hook 'emacs-lisp-mode-hook
@@ -177,7 +164,7 @@
 (require 'yasnippet)
 
 (setq yas/triggers-in-field nil)
-(setq yas-snippet-dirs '("~/.emacs.snippets/"))
+(setq yas-snippet-dirs '("~/.config/emacs/snippets/"))
 
 (yas-global-mode 1)
 
@@ -300,8 +287,6 @@
  'rfc-mode
  'sml-mode
  )
-
-(load "~/.emacs.shadow/shadow-rc.el" t)
 
 (defun astyle-buffer (&optional justify)
   (interactive)

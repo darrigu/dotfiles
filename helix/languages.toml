@@ -11,6 +11,20 @@ name = "python"
 auto-format = true
 
 [[language]]
+name = "javascript"
+auto-format = true
+
+[[language]]
 name = "c"
-auto-format = false
 indent = { tab-width = 3, unit = "   " }
+
+[[language]]
+name = "soba"
+scope = "source.soba"
+file-types = ["soba"]
+comment-token = "\\"
+indent = { tab-width = 3, unit = "   " }
+
+[[grammar]]
+name = "soba"
+source = { path = "/home/hugo/projects/tree-sitter-soba" }

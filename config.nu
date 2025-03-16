@@ -181,35 +181,51 @@ $env.config = {
 }
 
 plugin use gstat
-$env.PROMPT_INDICATOR = $"(ansi green_bold)➜ "
+$env.PROMPT_INDICATOR = { 
+   if ($env.LAST_EXIT_CODE == 0) {
+      $"(ansi green_bold)➜ "
+   } else {
+      $"(ansi red_bold)✘ "
+   }
+}
 $env.PROMPT_COMMAND = {||
    let path = $env.PWD | str replace $env.HOME '~'
    mut prompt = $"\n(ansi cyan_bold)($path)(ansi reset)"
-   let branch = gstat | get branch
+   
+   let git_status = gstat
+   let branch = $git_status | get branch
+
    if $branch != "no_branch" {
-      mut status = ""
-      if (gstat | get conflicts) > 0 { $status += "=" }
-      if (gstat | get ahead) > 0 { $status += "⇡" }
-      if (gstat | get behind) > 0 { $status += "⇣" }
-      if (gstat | get wt_untracked) > 0 { $status += "?" }
-      if (gstat | get stashes) > 0 { $status += "$" }
-      if (gstat | get wt_modified) > 0 { $status += "!" }
-      if (gstat | get idx_added_staged) > 0 { $status += "+" }
-      if (gstat | get idx_modified_staged) > 0 { $status += "»" }
-      if (gstat | get idx_deleted_staged) > 0 { $status += "✘" }
-      $status = if $status != "" { $" [($status)]" }
-      let git = if $branch != "no_branch" {
-         $" (ansi white)on (ansi purple_bold) ($branch)(ansi red)($status)"
-      }
+      let status_symbols = [
+         (if ($git_status | get conflicts) > 0 { "=" }),
+         (if ($git_status | get ahead) > 0 { "⇡" }),
+         (if ($git_status | get behind) > 0 { "⇣" }),
+         (if ($git_status | get wt_untracked) > 0 { "?" }),
+         (if ($git_status | get stashes) > 0 { "$" }),
+         (if ($git_status | get wt_modified) > 0 { "!" }),
+         (if ($git_status | get idx_added_staged) > 0 { "+" }),
+         (if ($git_status | get idx_modified_staged) > 0 { "»" }),
+         (if ($git_status | get idx_deleted_staged) > 0 { "✘" })
+      ] | filter { |x| $x != "" } | str join ""
+
+      let status = if ($status_symbols | str length) > 0 { $" [($status_symbols)]" } else { "" }
+      let git = $" (ansi white)on (ansi purple_bold) ($branch)(ansi red)($status)(ansi reset)"
       $prompt += $git
    }
+
+   let overlays = overlay list | skip 1
+   if ($overlays | length) > 0 {
+      $prompt += $" (ansi yellow)\(($overlays | str join ' ')\)"
+   }
+
    $prompt + "\n"
 }
 $env.PROMPT_COMMAND_RIGHT = ""
 $env.TRANSIENT_PROMPT_COMMAND = ""
 
 $env.EDITOR = "hx"
-$env.PNPM_HOME = "~/.local/share/pnpm"
+$env.PNPM_HOME = $"($env.HOME)/.local/share/pnpm"
+$env.VIRTUAL_ENV_DISABLE_PROMPT = true
 
 alias v = nvim
 

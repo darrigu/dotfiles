@@ -46,6 +46,8 @@ vim.opt.sidescrolloff = 5
 vim.opt.fillchars = { eob = ' ' }
 vim.opt.showmode = false
 vim.opt.showcmd = false
+vim.opt.undodir = vim.fn.stdpath('data') .. '/undo'
+vim.opt.undofile = true
 
 vim.keymap.set('n', '<space>m', ':make! ')
 vim.keymap.set('n', '<tab>', ':bn<cr>')
@@ -78,9 +80,9 @@ end)
 
 later(function() require('mini.statusline').setup() end)
 
-later(function()
-   require('mini.trailspace').setup()
-end)
+later(function() require('mini.pairs').setup() end)
+
+later(function() require('mini.trailspace').setup() end)
 
 later(function() require('mini.align').setup() end)
 
