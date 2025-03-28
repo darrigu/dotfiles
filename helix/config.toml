@@ -1,9 +1,8 @@
-theme = "catppuccin_mocha"
+theme = "catppuccin_mocha_transparent"
 
 [editor]
 line-number = "relative"
-# auto-format = false
-color-modes = true
+# color-modes = true
 completion-timeout = 5
 gutters = ["diagnostics", "line-numbers", "spacer", "spacer"]
 auto-info = false
@@ -16,20 +15,10 @@ select = "underline"
 [editor.indent-guides]
 render = true
 
-# [editor.lsp]
-# auto-signature-help = false
-
 [editor.soft-wrap]
 enable = true
 wrap-indicator = ""
 max-indent-retain = 0
 
-[editor.persistence]
-old-files = true
-commands = true
-search = true
-clipboard = true
-
 [keys.normal]
 g = { c = ":bc!" }
-
