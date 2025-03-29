@@ -69,7 +69,7 @@ window-rule {
 }
 
 cursor {
-  xcursor-theme "catppuccin-mocha-peach-cursors"
+  xcursor-theme "Catppuccin-Mocha-Peach-Cursors"
 }
 
 binds {
@@ -79,6 +79,7 @@ binds {
   Mod+D { spawn "fuzzel"; }
   Super+Alt+L { spawn "swaylock"; }
   Mod+N { spawn "swaync-client" "-t"; }
+  Mod+0 { spawn "wlogout"; }
 
   XF86AudioRaiseVolume allow-when-locked=true { spawn "swayosd-client" "--output-volume" "raise"; }
   XF86AudioLowerVolume allow-when-locked=true { spawn "swayosd-client" "--output-volume" "lower"; }
