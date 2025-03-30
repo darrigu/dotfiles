@@ -42,6 +42,7 @@ layout {
 
 environment {
   DISPLAY ":0"
+  TERMINAL "foot"
 }
 
 spawn-at-startup "xwayland-satellite"
@@ -58,6 +59,12 @@ hotkey-overlay {
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 window-rule {
+  match app-id=r#"firefox"#
+  match title="Chromium"
+  open-maximized true
+}
+
+window-rule {
   match app-id=r#"firefox$"# title="^Picture-in-Picture$"
   open-floating true
 }
@@ -69,7 +76,7 @@ window-rule {
 }
 
 cursor {
-  xcursor-theme "Catppuccin-Mocha-Peach-Cursors"
+  xcursor-theme "catppuccin-mocha-peach-cursors"
 }
 
 binds {
