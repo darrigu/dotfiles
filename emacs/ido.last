@@ -1,0 +1,45 @@
+;;; -*- coding: utf-8 -*-
+
+;; ----- ido-last-directory-list -----
+(
+ ("/home/baka/Programming/" . "sherd/")
+ ("/home/baka/" . ".emacs.d/")
+)
+
+;; ----- ido-work-directory-list -----
+(
+ "/home/baka/Programming/sherd/"
+ "/home/baka/.emacs.d/"
+ "/home/baka/Programming/lee/"
+)
+
+;; ----- ido-work-file-list -----
+(
+ "profile.json"
+ "init.el"
+ "build.lisp"
+ "main.lisp"
+ "lee.asd"
+ "hello.lee"
+ "lee.lisp"
+)
+
+;; ----- ido-dir-file-cache -----
+(
+ ("/home/baka/Programming/sherd/" (26754 29107 848347 185000) "profile.json" "sherd.ss" "../" "./")
+
+ ("/home/baka/.emacs.d/" (26753 8076 765535 188000) "ido.last" "transient/" "snippets/" "lisp/" "amx-items" "init.el" "early-init.el" "elpa/" "init.el~" "eln-cache/" "early-init.el~" "auto-save-list/" "../" "./")
+
+ ("/home/baka/Programming/" (26754 15813 888059 585000) "sherd/" "bee/" "exate/" "../" "./")
+
+ ("/home/baka/" (26754 11231 728305 135000) ".sly-mrepl-history" ".emacs.d/" ".quicklisp/" ".hex/" ".mix/" ".gnupg/" ".vim/" ".cargo/" ".wget-hsts" ".profile" "third_party/" ".csirc" ".chezscheme_history" ".viminfo" ".sbclrc" ".erlang.cookie" ".ssh/" ".vimrc" ".rustup/" "Programming/" ".dotfiles/" ".local/" "Downloads/" ".mozilla/" ".dbus/" ".config/" ".lesshst" ".cache/" ".bash_history" ".bash_logout" ".bash_profile" ".bashrc" ".inputrc" "../" "./")
+
+ ("/home/baka/Programming/lee/" (26753 7491 822566 534000) "system-index.txt" "main.lisp" "lee.asd" "hello.lee" "../" "./")
+
+ ("/home/baka/Programming/exate/" (26750 54597 591958 276000) "exate.exs" "index.html.exate" "erl_crash.dump" "posts/" "dist/" "../" "./")
+
+ ("/home/baka/.emacs.d/lisp/" (26753 3350 92788 482000) "simpc-mode.el" "../" "./")
+)
+
+;; ----- ido-unc-hosts-cache -----
+t

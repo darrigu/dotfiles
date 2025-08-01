@@ -1,6 +1,1 @@
-nvim|symlink|.config
-emacs|symlink|.config
-.sqliterc|symlink|
-helix|symlink|.config
-gitui|symlink|.config
-config.nu|symlink|.config/nushell
+foot|symlink|.config

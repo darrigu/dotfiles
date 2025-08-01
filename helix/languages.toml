@@ -1,30 +1,27 @@
 [[language]]
-name = "hare"
-indent = { tab-width = 3, unit = "   " }
+name = "verilog"
+file-types = ["vh", "sv", "svh"]
 
 [[language]]
-name = "css"
-indent = { tab-width = 3, unit = "   " }
+name = "html"
+
+[language.auto-pairs]
+'(' = ')'
+'{' = '}'
+'[' = ']'
+"'" = "'"
+'"' = '"'
+'`' = '`'
+'<' = '>'
 
 [[language]]
-name = "python"
-auto-format = true
-
-[[language]]
-name = "javascript"
-auto-format = true
-
-[[language]]
-name = "c"
-indent = { tab-width = 3, unit = "   " }
-
-[[language]]
-name = "soba"
-scope = "source.soba"
-file-types = ["soba"]
-comment-token = "\\"
-indent = { tab-width = 3, unit = "   " }
+name = "jakt"
+scope = "source.jakt"
+injection-regex = "jakt"
+file-types = ["jakt"]
+comment-tokens = "//"
+indent = { tab-width = 4, unit = "    " }
 
 [[grammar]]
-name = "soba"
-source = { path = "/home/hugo/projects/tree-sitter-soba" }
+name = "jakt"
+source = { git = "https://github.com/SerenityOS/tree-sitter-jakt", rev = "e67a5de093cab9eb79be721bf39bc9115193534a" }

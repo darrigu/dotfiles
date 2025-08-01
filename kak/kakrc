@@ -1,0 +1,183 @@
+# ======================
+# Plugin Management
+# ======================
+source "%val{config}/bundle/kak-bundle/rc/kak-bundle.kak"
+bundle-noload kak-bundle https://codeberg.org/jdugan6240/kak-bundle
+
+# ----------------------
+# Core Plugins
+# ----------------------
+bundle kakoune-state-save 'https://gitlab.com/Screwtapello/kakoune-state-save' %{
+   hook global KakBegin .* %{ state-save-reg-load @ }
+   hook global KakEnd .* %{ state-save-reg-save @ }
+}
+
+bundle kak-move-lines 'https://github.com/raiguard/kak-move-lines' %{
+   map global normal <a-up> %{: move-lines-up %val{count}<ret>} -docstring 'move lines up'
+   map global normal <a-down> %{: move-lines-down %val{count}<ret>} -docstring 'move lines down'
+}
+
+bundle auto-pairs.kak 'https://github.com/alexherbo2/auto-pairs.kak' %{
+   enable-auto-pairs
+}
+
+bundle kakoune-surround 'https://github.com/h-youhei/kakoune-surround' %{
+   declare-user-mode surround
+   map global surround s %{: surround<ret>} -docstring 'surround'
+   map global surround c %{: change-surround<ret>} -docstring 'change'
+   map global surround d %{: delete-surround<ret>} -docstring 'delete'
+   map global surround t %{: select-surrounding-tag<ret>} -docstring 'select tag'
+   map global user s %{: enter-user-mode surround<ret>} -docstring 'surround'
+}
+
+bundle smarttab.kak 'https://github.com/andreyorst/smarttab.kak' %{
+   hook global BufCreate .* %{
+      editorconfig-load
+      autoconfigtab
+   }
+}
+
+bundle kak-harpoon 'https://github.com/raiguard/kak-harpoon' %{
+   harpoon-add-bindings
+}
+
+bundle vlang.kak 'https://github.com/antono2/vlang.kak'
+
+bundle parinfer-rust 'https://github.com/eraserhd/parinfer-rust' %{
+   hook global WinSetOption filetype=(clojure|lisp|picolisp|racket|scheme) %{
+      parinfer-enable-window -smart
+   }
+}
+bundle-install-hook parinfer-rust %{ cargo install --force --path . }
+
+# ----------------------
+# LSP Configuration
+# ----------------------
+bundle kak-lsp 'https://github.com/kak-lsp/kak-lsp' %{
+   set-option global lsp_hover_max_lines 1000
+   set-option global lsp_hover_anchor true
+   set-option global lsp_snippet_support false
+
+   map global user l %{: enter-user-mode lsp<ret>} -docstring 'lsp...'
+
+   # LSP object mappings
+   map global object a '<a-semicolon>lsp-object<ret>' -docstring 'LSP any symbol'
+   map global object <a-a> '<a-semicolon>lsp-object<ret>' -docstring 'LSP any symbol'
+   map global object f '<a-semicolon>lsp-object Function Method<ret>' -docstring 'LSP function or method'
+   map global object t '<a-semicolon>lsp-object Class Interface Struct<ret>' -docstring 'LSP class interface or struct'
+   map global object d '<a-semicolon>lsp-diagnostic-object --include-warnings<ret>' -docstring 'LSP errors and warnings'
+   map global object D '<a-semicolon>lsp-diagnostic-object<ret>' -docstring 'LSP errors'
+
+   lsp-inlay-diagnostics-enable global
+}
+bundle-install-hook kak-lsp %{ cargo install --locked --force --path . }
+
+lsp-enable
+
+bundle kak-ansi 'https://github.com/eraserhd/kak-ansi' %{
+   hook global BufSetOption filetype=make ansi-enable
+}
+
+# ======================
+# Appearance & UI
+# ======================
+colorscheme catppuccin_mocha
+
+# Highlighting
+add-highlighter global/ show-matching
+# add-highlighter global/ show-whitespaces -indent │ -tab ' ' -tabpad ' ' -spc ' ' -lf ' ' -nbsp ' '
+add-highlighter global/ number-lines -relative -separator '  ' -hlcursor
+
+# UI Options
+set-option global ui_options terminal_assistant=off terminal_set_title=false
+set-option global scrolloff 8,16
+
+# Modeline
+declare-option -hidden str modeline_git_branch
+hook global WinDisplay .* %{
+   set-option window modeline_git_branch %sh{
+      branch=$(git -C "${kak_buffile%/*}" branch --show-current 2>/dev/null)
+      if [ -n "$branch" ]; then
+         printf "$branch "
+      fi
+   }
+}
+
+set-option global modelinefmt '{keyword}%opt{lsp_modeline_breadcrumbs}%opt{lsp_modeline_code_actions}%opt{lsp_modeline_progress}%opt{lsp_modeline_message_requests}{StatusLine} {string}%opt{modeline_git_branch} {type}%sh{ [ -n "$kak_opt_filetype" ] && echo "$kak_opt_filetype " }{default}%val{bufname} %val{cursor_line}:%val{cursor_char_column} {{context_info}} {{mode_info}} - %val{client}@[%val{session}]'
+
+# ======================
+# Editor Behavior
+# ======================
+set-option global autoreload yes
+hook -group auto-trim-whitespace global BufWritePre .* %{ try %{ execute-keys -draft \%s\h+$<ret>d } }
+hook global BufOpenFile .* modeline-parse
+
+# ======================
+# Search & Navigation
+# ======================
+set-option global grepcmd 'rg -Hn --no-heading --sort path --vimgrep'
+
+# Search mappings
+map global normal / '/(?i)'
+map global normal ? '?(?i)'
+map global normal <a-/> '<a-/>(?i)'
+map global normal <a-?> '<a-?>(?i)'
+map global normal <a-*> '*<percent>s<ret>' -docstring 'select all matching in file'
+
+# File/buffer navigation
+map global user f %{: prompt -shell-script-candidates %{ fd --type f } file: %{ edit %val{text} }<ret>} -docstring 'find file'
+map global user b %{: prompt -buffer-completion buffer: %{ buffer %val{text} }<ret>} -docstring 'find buffer'
+
+# ======================
+# Commands & Mappings
+# ======================
+define-command edit-kakrc %{ e ~/.config/kak/kakrc }
+
+# Commenting
+map global normal '#' %{: comment-line<ret>}
+map global normal '<a-#>' %{: comment-block<ret>}
+
+# Clipboard
+map global user p '<a-!>wl-paste<ret>' -docstring 'paste from clipboard'
+map global user y '<a-|>wl-copy<ret>' -docstring 'copy to clipboard'
+
+# External tools
+map global user g %{: sway-terminal-horizontal gitui<ret>} -docstring 'gitui'
+
+# ======================
+# Filetype-Specific
+# ======================
+hook global BufSetOption filetype=html %{
+   set-option buffer auto_pairs '(' ')' '[' ']' '{' '}' '"' '"' "'" "'" '<' '>'
+}
+
+hook global BufSetOption filetype=v %{
+   set-option buffer lsp_servers %{
+      [v-analyzer]
+      args = ["--stdio"]
+      root_globs = ["v.mod"]
+   }
+
+   hook buffer BufWritePre .* lsp-formatting-sync
+
+   set-option global makecmd 'v .'
+}
+
+hook global BufSetOption filetype=json %{
+   set-option buffer formatcmd 'jq .'
+}
+
+# ======================
+# Build & Errors
+# ======================
+set-option global make_error_pattern '^\h*(?:\w:)?([^:\n]+):(\d+):(?:(\d+):)? (?:fatal )?(?:(error|warning|info|hint|note):)?([^\n]+)?'
+
+map global user m %{: make<ret>} -docstring 'make'
+map global normal <c-n> %{: jump-next *make*<ret>} -docstring 'next location'
+map global normal <c-a-n> %{: jump-select-next<ret>} -docstring 'select next location'
+map global normal <c-p> %{: jump-previous *make*<ret>} -docstring 'previous location'
+map global normal <c-a-p> %{: jump-select-previous<ret>} -docstring 'select previous location'
+
+hook global BufSetOption filetype=make %{
+   map buffer normal <esc> ':delete-buffer *make*<ret>'
+}

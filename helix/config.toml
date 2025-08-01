@@ -2,10 +2,10 @@ theme = "catppuccin_mocha_transparent"
 
 [editor]
 line-number = "relative"
-# color-modes = true
 completion-timeout = 5
-gutters = ["diagnostics", "line-numbers", "spacer", "spacer"]
 auto-info = false
+trim-final-newlines = true
+trim-trailing-whitespace = true
 
 [editor.cursor-shape]
 insert = "bar"
@@ -14,11 +14,6 @@ select = "underline"
 
 [editor.indent-guides]
 render = true
-
-[editor.soft-wrap]
-enable = true
-wrap-indicator = ""
-max-indent-retain = 0
 
 [keys.normal]
 g = { c = ":bc!" }
