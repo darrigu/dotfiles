@@ -1,0 +1,3 @@
+export PATH="$PATH:$HOME/.local/bin"
+
+alias v=nvim
