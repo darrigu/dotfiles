@@ -1,8 +1,4 @@
 foot|symlink|.config
-config.fish|symlink|.config/fish
-sway|symlink|.config
-swaylock|symlink|.config
-rofi|symlink|.config
+fish|symlink|.config
 emacs|symlink|.config
-kak|symlink|.config
 gitui|symlink|.config
