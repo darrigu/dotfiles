@@ -1,4 +1,2 @@
-foot|symlink|.config
-fish|symlink|.config
-emacs|symlink|.config
 gitui|symlink|.config
+.emacs|symlink|
