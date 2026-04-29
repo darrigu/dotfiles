@@ -1,0 +1,4 @@
+helix|symlink|.config
+fish/config.fish|symlink|.config
+ghostty|symlink|.config
+.sqliterc|symlink|
