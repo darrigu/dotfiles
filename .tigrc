@@ -1,0 +1,24 @@
+color default           white     default
+color cursor            black     magenta
+color status            black     magenta
+color title-focus       magenta   default
+color title-blur        blue      default
+color delimiter         blue      default
+
+color date              cyan      default
+color author            yellow    default
+color file              blue      default
+color id                red       default
+
+color diff-header       magenta   default
+color diff-index        yellow    default
+color diff-add          green     default
+color diff-del          red       default
+color diff-chunk        cyan      default
+
+color main-head         magenta   default bold
+color main-remote       cyan      default
+color main-tag          yellow    default
+color main-local-tag    yellow    default
+
+color search-result     black     yellow
