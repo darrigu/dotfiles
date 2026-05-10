@@ -1,4 +1,8 @@
 helix|symlink|.config
 fish/config.fish|symlink|.config
-ghostty|symlink|.config
 .sqliterc|symlink|
+rofi|symlink|.config
+wlogout|symlink|.config
+waybar|symlink|.config
+foot|symlink|.config
+mango|symlink|.config
