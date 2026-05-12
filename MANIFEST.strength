@@ -2,10 +2,7 @@ helix|symlink|.config
 fish/config.fish|symlink|.config
 fish/themes|symlink|.config
 .sqliterc|symlink|
-wlogout|symlink|.config
-waybar|symlink|.config
 foot|symlink|.config
-mango|symlink|.config
+niri|symlink|.config
 fuzzel|symlink|.config
 .tigrc|symlink|
-dunst|symlink|.config

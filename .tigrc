@@ -1,24 +1,98 @@
+# Catppuccin Mocha Red — tig theme (base16)
+# https://github.com/catppuccin/catppuccin
+#
+# Relies entirely on your terminal's 16-color palette.
+# Set it up with a Catppuccin Mocha base16 scheme, e.g.:
+#   https://github.com/catppuccin/base16
+#
+# base16 slot → Mocha color
+#   color0  / black   → Base      #1e1e2e  (background)
+#   color1  / red     → Red       #f38ba8  ← accent
+#   color2  / green   → Green     #a6e3a1
+#   color3  / yellow  → Yellow    #f9e2af
+#   color4  / blue    → Blue      #89b4fa
+#   color5  / magenta → Mauve     #cba6f7
+#   color6  / cyan    → Teal      #94e2d5
+#   color7  / white   → Text      #cdd6f4
+#   color8            → Surface1  #45475a  (dim / comments)
+#   color9            → Peach     #fab387
+#   color10           → Subtext0  #a6adc8
+#   color11           → Overlay1  #7f849c
+#   color12           → Sky       #89dceb
+#   color13           → Lavender  #b4befe
+#   color14           → Subtext1  #bac2de
+#   color15           → Rosewater #f5e0dc
+
+# ── General UI ────────────────────────────────────────────────────────────────
 color default           white     default
-color cursor            black     magenta
-color status            black     magenta
-color title-focus       magenta   default
-color title-blur        blue      default
-color delimiter         blue      default
-
-color date              cyan      default
-color author            yellow    default
-color file              blue      default
+color cursor            black     red       bold
+color status            yellow    default
+color delimiter         red       default
+color date              color9    default
+color mode              green     default
 color id                red       default
+color overflow          red       default
 
+# ── Title bars ────────────────────────────────────────────────────────────────
+color title-blur        color10   default
+color title-focus       white     default   bold
+
+# ── Headers & sections ────────────────────────────────────────────────────────
+color header            red       default   bold
+color section           red       default   bold
+
+# ── File tree ─────────────────────────────────────────────────────────────────
+color directory         blue      default
+color file              white     default
+color file-size         magenta   default
+color grep.file         blue      default
+
+# ── Line numbers ──────────────────────────────────────────────────────────────
+color line-number       color8    default
+
+# ── Main view — commits & refs ────────────────────────────────────────────────
+color main-commit       white     default
+color main-tag          red       default   bold
+color main-local-tag    red       default   bold
+color main-remote       color9    default
+color main-replace      cyan      default
+color main-tracked      green     default   bold
+color main-ref          blue      default
+color main-head         red       default   bold
+color graph-commit      red       default
+
+# ── Status view ───────────────────────────────────────────────────────────────
+color stat-none         white     default
+color stat-staged       green     default
+color stat-unstaged     color9    default
+color stat-untracked    color8    default
+
+# ── Diff view ─────────────────────────────────────────────────────────────────
 color diff-header       magenta   default
-color diff-index        yellow    default
+color diff-index        color10   default
+color diff-chunk        blue      default   bold
 color diff-add          green     default
 color diff-del          red       default
-color diff-chunk        cyan      default
+color diff-add2         cyan      default
+color diff-del2         color9    default
+color diff-stat         magenta   default
 
-color main-head         magenta   default bold
-color main-remote       cyan      default
-color main-tag          yellow    default
-color main-local-tag    yellow    default
+# ── Help view ─────────────────────────────────────────────────────────────────
+color help-group        red       default   bold
+color help-action       white     default
 
-color search-result     black     yellow
+# ── Graph palette (branch lane colors) ────────────────────────────────────────
+color palette-0         red       default           # Red (accent)
+color palette-1         color9    default           # Peach
+color palette-2         green     default           # Green
+color palette-3         yellow    default           # Yellow
+color palette-4         blue      default           # Blue
+color palette-5         magenta   default           # Mauve
+color palette-6         cyan      default           # Teal
+color palette-7         red       default   bold
+color palette-8         color9    default   bold
+color palette-9         green     default   bold
+color palette-10        yellow    default   bold
+color palette-11        blue      default   bold
+color palette-12        magenta   default   bold
+color palette-13        cyan      default   bold
