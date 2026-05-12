@@ -6,3 +6,4 @@ foot|symlink|.config
 niri|symlink|.config
 fuzzel|symlink|.config
 .tigrc|symlink|
+waybar|symlink|.config

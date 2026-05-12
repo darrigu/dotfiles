@@ -1,327 +1,202 @@
 @import "mocha.css";
+@define-color accent @red;
 
 * {
-  border: none;
+  font-size: 16px;
   font-family: JetBrainsMono Nerd Font Propo;
-  font-weight: 600;
-  font-size: 12px;
-  min-height: 0;
-}
-
-window#waybar {
-  background: none;
-  margin: 0px;
+  min-width: 8px;
+  min-height: 0px;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  text-shadow: none;
   padding: 0px;
 }
 
+window#waybar {
+  transition-property: background-color;
+  transition-duration: 0.5s;
+  border-radius: 8px;
+  border: 2px solid @accent;
+  background: @base;
+  background: alpha(@base, 0.7);
+  color: lighter(@accent);
+}
+
+menu,
 tooltip {
-  background: alpha(@base, 0.8);
-  border-radius: 4px;
-  border-width: 2px;
-  border-style: solid;
-  border-color: @maroon;
-  color: @text;
+  border-radius: 8px;
+  padding: 2px;
+  border: 1px solid lighter(@accent);
+  background: alpha(@base, 0.6);
+
+  color: lighter(@accent);
 }
 
-#language,
+menu label,
+tooltip label {
+  font-size: 14px;
+  color: lighter(@accent);
+}
+
+#tray>.needs-attention {
+  animation-name: blink-active;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+.modules-right {
+  margin: 0px 6px 6px 6px;
+  border-radius: 4px;
+  background: alpha(@base, 0.4);
+  color: lighter(@accent);
+}
+
+.modules-left {
+  transition-property: background-color;
+  transition-duration: 0.5s;
+  margin: 6px 6px 6px 6px;
+  border-radius: 4px;
+  background: alpha(@base, 0.4);
+  color: lighter(@accent);
+}
+
+#memory,
+#disk,
+#together,
+#connection,
+#brightness,
+#power,
 #custom-updates,
-#custom-weather,
-#window,
-#tags,
-#custom-playerctl,
-#clock,
-#battery,
-#pulseaudio,
-#cpu,
-#temperature,
-#backlight,
-#network,
-#workspaces,
 #tray,
-#idle_inhibitor,
-#cava,
-#custom-power {
-  background: none;
-  padding: 0px 10px;
-  margin: 0px;
-  margin-top: 10px;
-  margin-bottom: 0px;
-}
-
-
-#tags {
+#audio,
+#sound {
   border-radius: 4px;
-  border-width: 2px;
-  border-style: solid;
-  border-color: @maroon;
-  margin-left: 10px;
-  padding-left: 10px;
-  padding-right: 6px;
-  background: alpha(@base, 0.8);
-
+  margin: 2px 2px 4px 2px;
+  background: alpha(darker(@accent), 0.3);
 }
 
-#tags button {
-  border: none;
-  background: none;
-  box-shadow: inherit;
-  text-shadow: inherit;
-  color: black;
-  padding: 1px;
-  padding-left: 1px;
-  padding-right: 1px;
-  margin-right: 4px;
+#custom-notifications {
+  font-size: 14px;
 }
 
-#tags button {
-  color: black;
-}
-
-#tags button:not(.occupied):not(.focused) {
-  font-size: 0;
-  min-width: 0;
-  min-height: 0;
-  margin: -17px;
-  padding: 0;
-  color: transparent;
-  background-color: transparent;
-}
-
-#tags button.occupied {
-  color: @maroon;
-}
-
-#tags button.overview {
-  color: black;
-}
-
-#tags button:hover {
-  color: shade(@maroon, 0.8);
-}
-
-#tags button.focused {
-  background-color: @maroon;
-  color: @base;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  padding-top: 1px;
-  padding-bottom: 0px;
-  border-radius: 3px;
-}
-
-#tags button.urgent {
-  background-color: @red;
-  color: @base;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  padding-top: 1px;
-  padding-bottom: 0px;
-  border-radius: 3px;
-}
-
-#tray {
-  background: alpha(@base, 0.8);
-  border-radius: 4px;
-  border-width: 2px;
-  border-style: solid;
-  border-color: @maroon;
-  margin-right: 4px;
-  margin-left: 4px;
-  padding-right: 8px;
-  padding-left: 9px;
-  padding-top: 2px;
-  color: @text;
-}
-
-#idle_inhibitor {
-  background: alpha(@base, 0.8);
-  border-radius: 4px;
-  border-width: 2px;
-  border-style: solid;
-  border-color: @maroon;
-  margin-right: 4px;
-  margin-left: 0;
-  padding-right: 8px;
-  padding-left: 9px;
-  padding-top: 2px;
-  color: @text;
-}
-
-#idle_inhibitor.activated {
-  border-color: @text;
-  color: @text;
-}
-
-#idle_inhibitor.deactivated {
-  border-color: @overlay2;
-  color: @overlay2;
-}
-
-#network {
-  background: alpha(@base, 0.8);
-  border-radius: 4px;
-  border-width: 2px;
-  border-style: solid;
-  border-color: @mauve;
-  margin-right: 4px;
-  margin-left: 0px;
-  padding-right: 13px;
-  padding-left: 9px;
-  padding-top: 2px;
-  color: @mauve;
+#disk,
+#memory,
+#cpu {
+  font-size: 14px;
+  font-weight: bold;
 }
 
 #workspaces {
-  background: alpha(@base, 0.8);
+  margin: 0px 2px;
+  padding: 4px 0px 0px 0px;
+  border-radius: 8px;
+}
+
+#workspaces button {
+  transition-property: background-color;
+  transition-duration: 0.5s;
+  color: @text;
+  background: transparent;
   border-radius: 4px;
-  border-width: 2px;
-  border-style: solid;
-  border-color: @maroon;
-  margin-left: 4px;
-  padding-right: 6px;
-  padding-left: 4px;
+  color: alpha(@text, 0.3);
 }
 
-#language {
-  background: alpha(@base, 0.8);
-  color: #ddca9e;
-  border-width: 2px;
-  border-style: solid;
-  border-color: @maroon;
-  border-right: 0px;
-  border-radius: 4px 0px 0px 4px;
-  min-width: 24px;
-}
-
-#custom-updates {
-  background: alpha(@base, 0.8);
+#workspaces button.urgent {
+  font-weight: bold;
   color: @text;
-  border-radius: 0px 4px 4px 0px;
-  border-width: 2px;
-  border-left: 0px;
-  border-style: solid;
-  border-color: @maroon;
 }
 
-#window {
-  background: alpha(@base, 0.8);
-  border-width: 2px;
-  border-style: solid;
-  border-color: @maroon;
+#workspaces button.active {
+  padding: 4px 2px;
+  background: alpha(@accent, 0.4);
+  color: lighter(@accent);
   border-radius: 4px;
-  margin-left: 10px;
-  margin-right: 10px;
-  color: @text;
 }
 
-#custom-playerctl {
-  background: alpha(@base, 0.8);
-  border-width: 2px;
-  border-style: solid;
-  border-color: @maroon;
-  border-right: 0px;
-  border-left: 0px;
-  color: @text;
+#tray {
+  padding: 4px 0px 4px 0px;
 }
 
-#cava {
-  background: alpha(@base, 0.8);
-  border-radius: 4px 0px 0px 4px;
-  border-width: 2px;
-  border-style: solid;
-  border-color: @maroon;
-  margin-left: 4px;
-  color: @text;
-}
-
-#clock {
-  background: alpha(@base, 0.8);
-  color: @text;
-  border-width: 2px;
-  border-style: solid;
-  border-color: @maroon;
-  border-right: 2px;
-  border-radius: 4px 0px 0px 4px;
-}
-
-#pulseaudio {
-  background: alpha(@base, 0.8);
-  color: @maroon;
-  border-width: 2px;
-  border-width: 2px;
-  border-style: solid;
-  border-color: @maroon;
-  border-right: 0px;
-  margin-left: 0px;
-  border-radius: 4px 0px 0px 4px;
-}
-
-#cpu  {
-  background: alpha(@base, 0.8);
-  color: @green;
-  border-width: 2px;
-  border-style: solid;
-  border-color: @green;
-  border-right: 0px;
-  border-left: 0px;
-  border-radius: 0px;
-}
-
-#temperature {
-  background: alpha(@base, 0.8);
-  color: @blue;
-  border-width: 2px;
-  border-style: solid;
-  border-color: @blue;
-  border-right: 0px;
-  border-left: 0px;
-  border-radius: 0px;
-}
-
-#backlight {
-  background: alpha(@base, 0.8);
-  color: @yellow;
-  border-width: 2px;
-  border-style: solid;
-  border-color: @yellow;
-  border-radius: 0px 4px 4px 0px;
-  border-left: 0px;
-  margin-right: 4px;
+#bluetooth {
+  padding-top: 2px;
 }
 
 #battery {
-  background: alpha(@base, 0.8);
-  color: @peach;
-  border-width: 2px;
-  border-style: solid;
-  border-color: @peach;
-  border-radius: 0px;
-  border-right: 0px;
-  border-left: 0px;
+  border-radius: 8px;
+  padding: 4px 0px;
+  margin: 4px 2px 4px 2px;
 }
 
-#custom-weather {
-  background: alpha(@base, 0.8);
-  color: @maroon;
-  border-radius: 4px 0px 0px 4px;
-  border-width: 2px;
-  border-style: solid;
-  border-color: @maroon;
-  border-right: 0px;
-  margin-left: 4px;
-  padding-right: 7px;
-  padding-top: 1px;
+#battery.discharging.warning {
+  animation-name: blink-yellow;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 
-#custom-power {
-  background: alpha(@base, 0.8);
-  color: @maroon;
-  border-width: 2px;
-  border-style: solid;
-  border-color: @maroon;
-  border-radius: 0px 4px 4px 0px;
-  border-left: 0px;
-  margin-left: 0px;
-  margin-right: 10px;
-  padding-right: 14px;
+#battery.discharging.critical {
+  animation-name: blink-red;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#clock {
+  font-weight: bold;
+  padding: 4px 2px 2px 2px;
+}
+
+#backlight-slider slider {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+#backlight-slider trough {
+  margin-top: 4px;
+  min-width: 6px;
+  min-height: 60px;
+  border-radius: 8px;
+  background-color: alpha(@base, 0.6);
+}
+
+#backlight-slider highlight {
+  border-radius: 8px;
+  background-color: lighter(@accent);
+}
+
+#bluetooth.discoverable,
+#bluetooth.discovering,
+#bluetooth.pairable {
+  border-radius: 8px;
+  animation-name: blink-active;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes blink-active {
+  to {
+    background-color: @accent;
+    color: @text;
+  }
+}
+
+@keyframes blink-red {
+  to {
+    background-color: @red;
+    color: @text;
+  }
+}
+
+@keyframes blink-yellow {
+  to {
+    background-color: @yellow;
+    color: @text;
+  }
 }
