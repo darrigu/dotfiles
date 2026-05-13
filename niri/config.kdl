@@ -37,6 +37,11 @@ spawn-at-startup "waybar"
 spawn-at-startup "mako"
 spawn-sh-at-startup "swaybg -i ~/Pictures/Wallpapers/clearing.png"
 
+cursor {
+    xcursor-theme "catppuccin-mocha-red-cursors"
+    xcursor-size 24
+}
+
 hotkey-overlay {
     skip-at-startup
 }
@@ -53,6 +58,7 @@ window-rule {
 window-rule {
     match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
     default-floating-position x=30 y=30 relative-to="bottom-right"
+    open-focused false
 }
 
 window-rule {
