@@ -1,0 +1,15 @@
+# Colors
+
+default-timeout=5000
+margin=0
+outer-margin=30
+padding=10
+
+background-color=#1e1e2eb1
+text-color=#cdd6f4
+border-color=#f38ba8
+border-radius=8
+progress-color=over #313244
+
+[urgency=high]
+border-color=#fab387

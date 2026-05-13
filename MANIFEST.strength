@@ -7,3 +7,4 @@ niri|symlink|.config
 fuzzel|symlink|.config
 .tigrc|symlink|
 waybar|symlink|.config
+mako|symlink|.config
