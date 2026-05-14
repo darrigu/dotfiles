@@ -4,6 +4,7 @@ default-timeout=5000
 margin=0
 outer-margin=30
 padding=10
+layer=overlay
 
 background-color=#1e1e2eb1
 text-color=#cdd6f4
