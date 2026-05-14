@@ -1,5 +1,5 @@
 @import "mocha.css";
-@define-color accent @red;
+@define-color accent @pink;
 
 * {
   font-size: 16px;

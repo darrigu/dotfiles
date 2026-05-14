@@ -24,18 +24,18 @@ layout {
     border {
         width 2
 
-        active-color "#f38ba8"
+        active-color "#f5c2e7"
         inactive-color "#585b70"
     }
 
     insert-hint {
-        color "#cba6f7"
+        color "#f5c2e7b1"
     }
 }
 
 spawn-at-startup "waybar"
 spawn-at-startup "mako"
-spawn-sh-at-startup "swaybg -i ~/Pictures/Wallpapers/clearing.png"
+spawn-sh-at-startup "swaybg -i ~/Pictures/Wallpapers/grandfather_tree.jpg"
 
 cursor {
     xcursor-theme "catppuccin-mocha-red-cursors"
@@ -89,6 +89,7 @@ binds {
 
     Mod+T { spawn "foot"; }
     Mod+D { spawn "fuzzel"; }
+    Mod+E { spawn "thunar"; }
     Super+Alt+L { spawn "swaylock"; }
 
     XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ -l 1.5 && ~/.config/niri/scripts/volume.sh"; }
