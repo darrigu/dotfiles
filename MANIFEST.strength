@@ -10,3 +10,5 @@ waybar|symlink|.config
 mako|symlink|.config
 gtk-3.0|symlink|.config
 gtk-4.0|symlink|.config
+swaylock|symlink|.config
+kak|symlink|.config

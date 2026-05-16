@@ -1,0 +1,76 @@
+colorscheme catppuccin_mocha
+
+add-highlighter -override global/line_numbers number-lines -relative -hlcursor
+add-highlighter -override global/matching_pairs show-matching -previous
+
+set-option global autoreload true
+set-option global tabstop 4
+set-option global indentwidth 4
+
+set-option global scrolloff 3,3
+
+nop %sh{
+    mkdir -p "$kak_config/autoload"
+    ln -s "$kak_runtime/autoload" "$kak_config/autoload/stdlib"
+}
+
+map global insert <tab> '<a-;><a-gt>'
+map global insert <s-tab> '<a-;><a-lt>'
+
+try %{ declare-user-mode make-mode }
+try %{ declare-user-mode kak-config-mode }
+try %{ declare-user-mode goto-mode }
+
+map global -docstring "format buffer" user '=' ":format<ret>"
+
+map global -docstring "make" user 'm' ":enter-user-mode make-mode<ret>"
+map global -docstring "kak config" user 'k' ":enter-user-mode kak-config-mode<ret>"
+map global -docstring "goto" user 'g' ":enter-user-mode goto-mode<ret>"
+
+map global -docstring "next" make-mode 'n' ":make-next-error<ret>"
+map global -docstring "previous" make-mode 'p' ":make-previous-error<ret>"
+map global -docstring "make" make-mode 'm' ":make<ret>"
+
+map global -docstring "edit" kak-config-mode 'e' ":edit '%val{config}/kakrc'<ret>"
+map global -docstring "source" kak-config-mode 's' ":source '%val{config}/kakrc'<ret>"
+
+map global -docstring "file" goto-mode 'f' ":pick-file<ret>"
+map global -docstring "scratch" goto-mode 'S' ":buffer '*scratch*'<ret>"
+
+define-command pick-file -override %{
+    prompt -menu -shell-script-candidates %{ fd -t f } 'File: ' %{ edit -- %val{text} }
+}
+
+hook global BufSetOption filetype=(json|html|yaml|toml) %{
+    set-option buffer tabstop 2
+    set-option buffer indentwidth 2
+}
+
+hook global BufSetOption filetype=markdown %{
+    set-option buffer tabstop 2
+    set-option buffer indentwidth 0
+    set-option buffer autowrap_column 100
+
+    map buffer normal <s-ret> ":markdown-toggle-checkbox<ret>"
+
+    autowrap-enable
+}
+
+define-command markdown-toggle-checkbox -override -docstring "Toggle a markdown checkbox" %{
+    try %{
+        execute-keys -draft x 1s '\[( )\]'<ret> r x
+    } catch %{
+        try %{
+            execute-keys -draft x 1s '\[(x)\]'<ret> r <space>
+        } catch %{
+        }
+    }
+}
+
+hook global BufSetOption filetype=kak %{
+    set-option buffer formatcmd "kakfmt"
+}
+
+hook global BufSetOption filetype=makefile %{
+    set-option buffer indentwidth 0
+}
