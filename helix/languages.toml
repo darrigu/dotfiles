@@ -1,0 +1,12 @@
+[[language]]
+name = "mochi"
+scope = "source.mochi"
+injection-regex = "mochi"
+file-types = ["moc"]
+comment-token = "--"
+indent = { tab-width = 4, unit = "    " }
+grammar = "mochi"
+
+[[grammar]]
+name = "mochi"
+source = { path = "/home/hugo/Projects/mochi/tools/tree-sitter-mochi" }

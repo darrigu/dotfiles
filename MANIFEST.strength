@@ -12,3 +12,4 @@ gtk-3.0|symlink|.config
 gtk-4.0|symlink|.config
 swaylock|symlink|.config
 kak|symlink|.config
+tmux|symlink|.config
