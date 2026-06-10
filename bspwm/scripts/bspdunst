@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+pkill dunst 2>/dev/null
+
+dunst &

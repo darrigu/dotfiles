@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+
+get_volume() {
+    echo "$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{printf "%.0f\n", $2*100}')"
+}
+
+get_icon() {
+    current="$(get_volume)"
+    if [[ "$current" -eq "0" ]]; then
+        icon="$HOME/.config/dunst/icons/volume-mute.png"
+    elif [[ ("$current" -ge "0") && ("$current" -le "30") ]]; then
+        icon="$HOME/.config/dunst/icons/volume-low.png"
+    elif [[ ("$current" -ge "30") && ("$current" -le "60") ]]; then
+        icon="$HOME/.config/dunst/icons/volume-mid.png"
+    elif [[ ("$current" -ge "60") && ("$current" -le "150") ]]; then
+        icon="$HOME/.config/dunst/icons/volume-high.png"
+    fi
+}
+
+notify_user() {
+    get_icon && dunstify -u low -h string:x-dunst-stack-tag:obvolume -i "$icon" "Volume : $(get_volume)%"
+}
+
+inc_volume() {
+    wpctl set-mute @DEFAULT_AUDIO_SINK@ 0
+    wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ -l 1.5 && notify_user
+}
+
+dec_volume() {
+    wpctl set-mute @DEFAULT_AUDIO_SINK@ 0
+    wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && notify_user
+}
+
+toggle_mute() {
+    wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+}
+
+toggle_mic() {
+    wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+}
+
+if [[ "$1" == "--get" ]]; then
+    get_volume
+elif [[ "$1" == "--inc" ]]; then
+    inc_volume
+elif [[ "$1" == "--dec" ]]; then
+    dec_volume
+elif [[ "$1" == "--toggle" ]]; then
+    toggle_mute
+elif [[ "$1" == "--toggle-mic" ]]; then
+    toggle_mic
+else
+    get_volume
+fi

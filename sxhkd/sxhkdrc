@@ -1,0 +1,122 @@
+super + Return
+    bspterm
+
+super + shift + Return
+    bspterm --float
+
+super + alt + Return
+    bspterm --full
+
+alt + F1
+    rofi_launcher
+
+alt + F2
+    rofi_runner
+
+super + {b,m,n,r,s,w,x}
+    {rofi_bluetooth,rofi_music,nmd,rofi_asroot,rofi_screenshot,rofi_windows,rofi_powermenu}
+
+super + shift + {f,w}
+    {thunar,firefox}
+
+ctrl + alt + {v,r,h}
+    bspterm -e {vis,ranger,htop}
+
+super + p
+    bspcolorpicker
+
+ctrl + alt + m
+    bspmusic
+
+ctrl + alt + l
+    betterlockscreen --lock
+
+Print
+    bspscreenshot --now
+
+alt + Print
+    bspscreenshot --in5
+
+shift + Print
+    bspscreenshot --in10
+
+ctrl + Print
+    bspscreenshot --win
+
+super + Print
+    bspscreenshot --area
+
+XF86MonBrightness{Up,Down}
+    bspbrightness{ --inc, --dec}
+
+XF86Audio{RaiseVolume,LowerVolume}
+    bspvolume{ --inc, --dec}
+
+XF86Audio{Mute,MicMute}
+    bspvolume{ --toggle, --toggle-mic}
+
+XF86Audio{Next,Prev,Play,Stop}
+    mpc {next,prev,toggle,stop}
+
+super + shift + h
+    bspwinmask
+
+super + {_,shift + }c
+    bspc node -{c,k}
+
+ctrl + alt + Escape
+    xkill
+
+ctrl + shift + {q,r}
+    bspc {quit,wm -r}
+
+super + Escape
+    pkill -USR1 -x sxhkd
+
+ctrl + alt + {Left,Right}
+    bspc desktop -f {prev.local,next.local}
+
+super + {_,shift + }{ampersand,eacute,quotedbl,apostrophe,parenleft,minus,egrave,underscore}
+    bspc {desktop -f,node -d} '^{1-8}' '--follow'
+
+super + ctrl + shift + {Left,Right}
+    bspc node -d {prev,next} '--follow'
+
+super + {_,shift + }{Left,Down,Up,Right}
+    bspc node -{f,s} {west,south,north,east}
+
+super + alt + shift + {Left,Down,Up,Right}
+    bspc node -v {-20 0,0 20,0 -20,20 0}
+
+super + control + {Left,Right,Up,Down}
+    bspc node -z {left -20 0,right 20 0,top 0 -20,bottom 0 20}
+
+super + alt + {Left,Right,Up,Down}
+    bspc node -z {left 20 0,right -20 0,top 0 20,bottom 0 -20}
+
+super + {h,v,q}
+    bspc node -p {east,south,cancel}
+
+super + ctrl + {ampersand,eacute,quotedbl,apostrophe,parenleft,minus,egrave,underscore,ccedilla}
+    bspc node -o 0.{1-9}
+
+super + l
+    bspc desktop -l next
+
+super + f
+    bspc node -t "~"fullscreen
+
+super + space
+    bspc node -t "~"{floating,tiled}
+
+super + shift + space
+    bspc node -t "~"{pseudo_tiled,tiled}
+
+super + ctrl + {m,x,y,z}
+    bspc node -g {marked,locked,sticky,private}
+
+alt + {_,shift + }Tab
+    bspc node -f {next.local,prev.local}
+
+super + {Tab,grave}
+    bspc {node,desktop} -f last

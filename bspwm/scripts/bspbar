@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+bspc config bottom_padding 0
+bspc config top_padding 0
+
+pkill polybar 2>/dev/null
+
+while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
+
+for monitor in $(polybar --list-monitors | cut -d ':' -f1); do
+    MONITOR=$monitor polybar -q main &
+done

@@ -1,0 +1,29 @@
+[general]
+import = ["~/.config/alacritty/colors.toml"]
+
+[env]
+TERM = "alacritty"
+WINIT_X11_SCALE_FACTOR = "1.0"
+
+[window]
+dynamic_padding = true
+
+[window.dimensions]
+columns = 95
+lines = 24
+
+[window.padding]
+x = 10
+y = 10
+
+[mouse]
+hide_when_typing = true
+
+[terminal]
+shell = "/usr/bin/fish"
+
+[font]
+size = 14
+
+[font.normal]
+family = "Iosevka Term Slab Nerd Font"
