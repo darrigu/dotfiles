@@ -14,7 +14,7 @@ alt + F2
     rofi_runner
 
 super + {b,m,n,r,s,w,x}
-    {rofi_bluetooth,rofi_music,nmd,rofi_asroot,rofi_screenshot,rofi_windows,rofi_powermenu}
+    {rofi_bluetooth,rofi_music,networkmanager_dmenu,rofi_asroot,rofi_screenshot,rofi_windows,rofi_powermenu}
 
 super + shift + {f,w}
     {thunar,firefox}

@@ -7,3 +7,4 @@ dunst|symlink|.config
 polybar|symlink|.config
 rofi|symlink|.config
 sxhkd|symlink|.config
+networkmanager-dmenu|symlink|.config
