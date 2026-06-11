@@ -1,0 +1,74 @@
+#!/usr/bin/env bash
+
+time="$(date +%Y-%m-%d-%H-%M-%S)"
+geometry="$(xrandr | grep 'current' | head -n1 | cut -d ',' -f2 | tr -d '[:blank:],current')"
+dir="$(xdg-user-dir PICTURES)/Screenshots"
+file="Screenshot_${time}_${geometry}.png"
+border='0.506,0.631,0.756'
+
+if [[ ! -d "$dir" ]]; then
+    mkdir -p "$dir"
+fi
+
+notify_view() {
+    notify_cmd_shot='dunstify -u low -h string:x-dunst-stack-tag:obscreenshot'
+    $notify_cmd_shot "Copied to clipboard."
+    viewnior "$dir/$file"
+    if [[ -e "$dir/$file" ]]; then
+        $notify_cmd_shot "Screenshot Saved."
+    else
+        $notify_cmd_shot "Screenshot Deleted."
+    fi
+}
+
+copy_shot() {
+    tee "$file" | xsel -i -b
+}
+
+countdown() {
+    for sec in `seq $1 -1 1`; do
+        dunstify -t 1000 -h string:x-dunst-stack-tag:screenshottimer "Taking shot in : $sec"
+        sleep 1
+    done
+}
+
+shotnow() {
+    cd "$dir" && maim -u -f png | copy_shot
+    notify_view
+}
+
+shot5() {
+    countdown '5'
+    sleep 1 && cd "$dir" && maim -u -f png | copy_shot
+    notify_view
+}
+
+shot10() {
+    countdown '10'
+    sleep 1 && cd "$dir" && maim -u -f png | copy_shot
+    notify_view
+}
+
+shotwin() {
+    cd "$dir" && maim -u -f png -i $(xdotool getactivewindow) | copy_shot
+    notify_view
+}
+
+shotarea() {
+    cd "$dir" && maim -u -f png -s -b 2 -c "$border,0.25" -l | copy_shot
+    notify_view
+}
+
+if [[ "$1" == '--now' ]]; then
+    shotnow
+elif [[ "$1" == '--in5' ]]; then
+    shot5
+elif [[ "$1" == '--in10' ]]; then
+    shot10
+elif [[ "$1" == '--win' ]]; then
+    shotwin
+elif [[ "$1" == '--area' ]]; then
+    shotarea
+else
+    shotnow
+fi
