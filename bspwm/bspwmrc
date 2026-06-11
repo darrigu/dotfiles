@@ -58,7 +58,7 @@ declare -a floating=(alacritty-float Thunar Yad 'Firefox:Places' Viewnior feh Nm
 for i in ${floating[@]}; do
    bspc rule -a $i state=floating follow=on focus=on; done
 
-pkill -9 sxhkd dunst xfce4-power-manager
+killall -9 sxhkd dunst xfce4-power-manager mpd
 
 sxhkd &
 
@@ -67,6 +67,8 @@ xfce4-power-manager &
 xsetroot -cursor_name left_ptr
 
 feh --bg-fill "$HOME/Pictures/Wallpapers/nord.jpg"
+
+exec mpd &
 
 bspbar
 bspcomp

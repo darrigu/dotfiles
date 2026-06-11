@@ -26,4 +26,4 @@ shell = "/usr/bin/fish"
 size = 14
 
 [font.normal]
-family = "Iosevka Term Slab Nerd Font"
+family = "JetBrainsMono Nerd Font"

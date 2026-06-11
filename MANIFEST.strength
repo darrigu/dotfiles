@@ -8,3 +8,6 @@ polybar|symlink|.config
 rofi|symlink|.config
 sxhkd|symlink|.config
 networkmanager-dmenu|symlink|.config
+picom|symlink|.config
+vis|symlink|.config
+rmpc|symlink|.config

@@ -4,23 +4,8 @@ get_backlight() {
     echo "$(brightnessctl | grep -oP '\(\K\d+(?=%\))')"
 }
 
-get_icon() {
-    current="$(get_backlight)"
-    if [[ ("$current" -ge "0") && ("$current" -le "20") ]]; then
-        icon="$HOME/.config/dunst/icons/brightness-20.png"
-    elif [[ ("$current" -ge "20") && ("$current" -le "40") ]]; then
-        icon="$HOME/.config/dunst/icons/brightness-40.png"
-    elif [[ ("$current" -ge "40") && ("$current" -le "60") ]]; then
-        icon="$HOME/.config/dunst/icons/brightness-60.png"
-    elif [[ ("$current" -ge "60") && ("$current" -le "80") ]]; then
-        icon="$HOME/.config/dunst/icons/brightness-80.png"
-    elif [[ ("$current" -ge "80") && ("$current" -le "100") ]]; then
-        icon="$HOME/.config/dunst/icons/brightness-100.png"
-    fi
-}
-
 notify_user() {
-    get_icon && dunstify -u low -h string:x-dunst-stack-tag:obbacklight -i "$icon" "Brightness : $(get_backlight)%"
+    dunstify -u low -h string:x-dunst-stack-tag:obbacklight "Brightness : $(get_backlight)%"
 }
 
 inc_backlight() {
