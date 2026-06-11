@@ -12,3 +12,4 @@ picom|symlink|.config
 vis|symlink|.config
 rmpc|symlink|.config
 mpd|symlink|.config
+.npmrc|symlink|
