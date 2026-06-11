@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+rofi -dmenu \
+     -password \
+     -i \
+     -p 'Root' \
+     -theme "$HOME/.config/rofi/askpass.rasi"

@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+color="$(xcolor --format hex --preview-size 255 --scale 10)"
+image="/tmp/$color.png"
+
+echo $color | tr -d '\n' | xsel -i -b
+convert -size 48x48 xc:"$color" "$image"
+dunstify -u low -h string:x-dunst-stack-tag:obcolorpicker -i "$image" "$color, copied to clipboard."

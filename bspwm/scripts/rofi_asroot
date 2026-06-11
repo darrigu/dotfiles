@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+
+term="alacritty --class alacritty-float,alacritty-float --config-file $HOME/.config/alacritty/alacritty.toml"
+
+option_1=''
+option_2=''
+option_3=''
+option_4=''
+option_5=''
+
+rofi_cmd() {
+    rofi -dmenu \
+         -p 'Root' \
+         -mesg 'Run Applications As Root' \
+         -markup-rows \
+         -theme "$HOME/.config/rofi/asroot.rasi"
+}
+
+run_rofi() {
+    echo -e "$option_1\n$option_2\n$option_3\n$option_4\n$option_5" | rofi_cmd
+}
+
+run_cmd() {
+    if [[ "$1" == '--opt1' ]]; then
+        bspasroot "$term"
+    elif [[ "$1" == '--opt2' ]]; then
+        bspasroot thunar
+    elif [[ "$1" == '--opt4' ]]; then
+        bspasroot "$term -e ranger"
+    elif [[ "$1" == '--opt5' ]]; then
+        bspasroot "$term -e vis"
+    fi
+}
+
+chosen="$(run_rofi)"
+case "$chosen" in
+    $option_1)
+        run_cmd --opt1
+        ;;
+    $option_2)
+        run_cmd --opt2
+        ;;
+    $option_3)
+        run_cmd --opt3
+        ;;
+    $option_4)
+        run_cmd --opt4
+        ;;
+    $option_5)
+        run_cmd --opt5
+        ;;
+esac
